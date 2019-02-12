@@ -1,6 +1,8 @@
-# dynamicrouter动态路由
-
+# DynamicRouter动态路由（客户端）
+`服务器代码地址是：https://github.com/junshangshui/DynamicRouteDemo`
 > A Vue.js project
+
+summary(摘要):Vue +.Net Core 2.1 + ElementUI + axios + JwtToken的动态路由demo(也是无级限菜单demo，也是jwtToken登录demo)
 
 ## Build Setup
 
