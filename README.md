@@ -4,6 +4,9 @@
 
 summary(摘要):Vue +.Net Core 2.1 + ElementUI + axios + JwtToken的动态路由demo(也是无级限菜单demo，也是jwtToken登录demo)
 
+## 主界面
+![主界面](https://github.com/junshangshui/DynamicRouterWebUi/blob/master/image1.png)
+
 ## Build Setup
 
 ``` bash
@@ -15,6 +18,3 @@ yarn run dev
 
 # build for production with minification
 yarn run build
-
-## 主界面
-![主界面](https://github.com/junshangshui/DynamicRouterWebUi/blob/master/image1.png)
