@@ -1,1 +1,2 @@
-module.exports = (file) => (file === 'Main' || file === 'Login') === true ? import('@/components' + file + '.vue') : import('@/views' + file + '.vue')
+// vue 生产环境适用懒加载
+module.exports = (file) => () => import('@/' + file + '.vue')

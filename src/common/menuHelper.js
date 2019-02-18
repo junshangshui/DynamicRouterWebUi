@@ -52,7 +52,7 @@ export default class MenuHelper {
     var routes = []
     let mainRoute = {
       path: '',
-      component: 'Main',
+      component: _import('components/Main'),
       meta: { requireAuth: true, menuId: null },
       children: []
     }
@@ -62,7 +62,7 @@ export default class MenuHelper {
     for (let routeData of parentRouteDatas) {
       let route = {
         path: routeData.routePath,
-        component: routeData.routePath.replace('/', ''),
+        component: _import(routeData.vueCompPath),
         meta: { requireAuth: routeData.requireAuth, menuId: routeData.menuId },
         children: []
       }
@@ -72,14 +72,14 @@ export default class MenuHelper {
 
     routes.push({
       path: '/Login',
-      component: 'Login',
+      component: _import('components/Login'),
       meta: { requireAuth: false, menuId: null },
       children: null
     })
 
-    if (routes) {
-      this.resolveRoutes(routes)
-    }
+    // if (routes) {
+    //   this.resolveRoutes(routes)
+    // }
 
     return routes
   }
@@ -93,7 +93,7 @@ export default class MenuHelper {
     for (let routeData of childRouteDatas) {
       let route = {
         path: routeData.routePath,
-        component: routeData.routePath.replace('/', ''),
+        component: _import(routeData.vueCompPath),
         meta: { requireAuth: routeData.requireAuth, menuId: routeData.menuId },
         children: []
       }
@@ -103,15 +103,15 @@ export default class MenuHelper {
   }
 
   // 解析路由
-  resolveRoutes (routeDatas) {
-    for (let index in routeDatas) {
-      let data = routeDatas[index]
-      if (data.children && data.children.length > 0) {
-        data.component = _import(data.component)
-        this.resolveRoutes(data.children) // 递归解析子路由
-      } else {
-        data.component = _import(data.component)
-      }
-    }
-  }
+  // resolveRoutes (routeDatas) {
+  //   for (let index in routeDatas) {
+  //     let data = routeDatas[index]
+  //     if (data.children && data.children.length > 0) {
+  //       data.component = _import(data.component)
+  //       this.resolveRoutes(data.children) // 递归解析子路由
+  //     } else {
+  //       data.component = _import(data.component)
+  //     }
+  //   }
+  // }
 }
