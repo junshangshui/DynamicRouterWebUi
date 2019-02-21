@@ -60,14 +60,18 @@ export default class MenuHelper {
 
     let parentRouteDatas = this.menus.filter(menu => menu.routePath && !menu.routeParentPath)
     for (let routeData of parentRouteDatas) {
-      let route = {
-        path: routeData.routePath,
-        component: _import(routeData.vueCompPath),
-        meta: { requireAuth: routeData.requireAuth, menuId: routeData.menuId },
-        children: []
+      try {
+        let route = {
+          path: routeData.routePath,
+          component: _import(routeData.vueCompPath),
+          meta: { requireAuth: routeData.requireAuth, menuId: routeData.menuId },
+          children: []
+        }
+        mainRoute.children.push(route)
+        this.recursiveBuildRoutes(route, routeData)
+      } catch (e) {
+        console.log(e)
       }
-      mainRoute.children.push(route)
-      this.recursiveBuildRoutes(route, routeData)
     }
 
     routes.push({
@@ -91,14 +95,18 @@ export default class MenuHelper {
       return
     }
     for (let routeData of childRouteDatas) {
-      let route = {
-        path: routeData.routePath,
-        component: _import(routeData.vueCompPath),
-        meta: { requireAuth: routeData.requireAuth, menuId: routeData.menuId },
-        children: []
+      try {
+        let route = {
+          path: routeData.routePath,
+          component: _import(routeData.vueCompPath),
+          meta: { requireAuth: routeData.requireAuth, menuId: routeData.menuId },
+          children: []
+        }
+        parentRoute.children.push(route)
+        this.recursiveBuildRoutes(route, routeData)
+      } catch (e) {
+        console.log(e)
       }
-      parentRoute.children.push(route)
-      this.recursiveBuildRoutes(route, routeData)
     }
   }
 
